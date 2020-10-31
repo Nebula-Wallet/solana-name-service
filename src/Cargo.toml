@@ -1,2 +1,2 @@
 [workspace]
-members = ["token-name-service","proxy-pointer"]
+members = ["token-name-service", "proxy-pointer", "account-name-service"]

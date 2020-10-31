@@ -12,6 +12,7 @@
     "airdrop": "ts-node src/client/airdrop.ts",
     "build": "cargo update --manifest-path=src/token-name-service/Cargo.toml && ./src/do.sh token-name-service build token_name_service ../../dist/program/token-name-service.so && rm -rf store/token-name-service.json",
     "build:pointer": "cargo update --manifest-path=src/proxy-pointer/Cargo.toml && ./src/do.sh proxy-pointer build proxy_pointer ../../dist/program/proxy-pointer.so && rm -rf store/proxy-pointer.json",
+    "build:account": "cargo update --manifest-path=src/account-name-service/Cargo.toml && ./src/do.sh account-name-service build account_name_service ../../dist/program/account-name-service.so && rm -rf store/account-name-service.json",
     "test_rust": "./src/do.sh simplest-rust test",
     "clean_simplest": "./src/do.sh simplest-rust clean && rm -rf store/token-name-service.json",
     "deploy": "ts-node src/client/deploy_flow.ts",
