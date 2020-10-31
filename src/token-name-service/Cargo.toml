@@ -1,0 +1,21 @@
+# Note: This crate must be built using do.sh
+
+[package]
+name = "token-name-service"
+version = "0.0.1"
+edition = "2018"
+
+[features]
+program = ["solana-sdk/program"]
+default = ["program", "solana-sdk/default"]
+
+[dependencies]
+byteorder = "1.3"
+remove_dir_all = "=0.5.0"
+solana-sdk = { version = "1.4.3", default-features = false }
+solana-program = { version = "1.4.3" }
+arrayref = "0.3.6"
+
+[lib]
+name = "token_name_service"
+crate-type = ["cdylib", "lib"]
