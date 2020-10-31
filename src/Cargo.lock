@@ -1107,6 +1107,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "proxy-pointer"
+version = "0.0.1"
+dependencies = [
+ "arrayref",
+ "byteorder",
+ "remove_dir_all",
+ "solana-program",
+ "solana-sdk",
+]
+
+[[package]]
 name = "quick-error"
 version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
