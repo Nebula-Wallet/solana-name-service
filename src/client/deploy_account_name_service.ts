@@ -16,7 +16,7 @@ import { estCostLoadProgram, loadProgram, estCostMakeAccount, makeAccount } from
 
 import * as fs from 'fs'
 
-const pathToProgram = 'dist/program/proxy-pointer.so'
+const pathToProgram = 'dist/program/account-name-service.so'
 
 async function main() {
   console.log('Deploying...')
@@ -36,7 +36,7 @@ async function main() {
 
   // NB: the use of this store is just a convenience, nothing fundamental is going on here
 
-  const s = await getStore(connection, 'proxy-pointer.json')
+  const s = await getStore(connection, 'account-name-service.json')
 
   if (s.inStore === true) {
     console.log(
@@ -78,9 +78,8 @@ async function main() {
     ') Sol'
   )
 
-  const proxyAccount = await makeAccount(connection, ourAccount, 33, programId)
-  console.log(`Created pointer: ${proxyAccount.toString()}`)
-  await setStore('proxy-pointer.json', programId, proxyAccount)
+  await setStore('account-name-service.json', programId)
+
   console.log('-----')
 }
 

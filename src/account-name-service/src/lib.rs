@@ -13,7 +13,7 @@ use solana_sdk::{
 use std::{str::from_utf8, str::FromStr};
 
 static PAYMENT_ACCOUNT_ADDRESS: &'static str = "Gsun7cGFrSUm3N8TEBq7Uu9xz4c9cE4pKdbtETQiSgZX";
-static COUNTER_POINTER_ADDRESS: &'static str = "CV4eUgR1y5wYtXSTKMH3WArEUvgt5RmgPmvk36rGZrAB";
+static COUNTER_POINTER_ADDRESS: &'static str = "DChDnvFLXxsX96qVzLsgMn8KfLhN3VLk69CnoHv6nAhe";
 static REGISTRATION_FEE: u64 = 1_000_000_000;
 const STORAGE_DATA_SIZE: usize = 73;
 const INSTRUCTION_DATA_SIZE: usize = 64;
@@ -185,9 +185,9 @@ fn process_instruction(
     }
     let mut counter_data = counter.try_borrow_mut_data()?;
     let mut counter_value_slice = array_mut_ref![counter_data, 0, 8];
-    // log::sol_log_slice(&counter_data);
     // Increment counter
     let counter_value = u64::from_le_bytes(*counter_value_slice) + 1;
+    log::sol_log(&counter_value.to_string());
     let mut counter_value_bytes = counter_value.to_le_bytes();
     counter_value_slice = array_mut_ref![counter_value_bytes, 0, 8];
     println!("Current counter:{:?}", counter_value);

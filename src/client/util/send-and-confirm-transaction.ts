@@ -7,7 +7,6 @@ export async function sendAndConfirmTransaction(
   transaction: Transaction,
   ...signers: Array<Account>
 ): Promise<void> {
-  const when = Date.now()
   console.log(`Confirming ${title}`)
   const signature = await realSendAndConfirmTransaction(connection, transaction, signers, {
     skipPreflight: true

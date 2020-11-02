@@ -49,9 +49,10 @@ export async function getStore(connection, file) {
   return { inStore: true, programId, accountId }
 }
 
-export async function setStore(file, programId) {
+export async function setStore(file, programId: PublicKey, accountId?: PublicKey) {
   const store = new Store()
   await store.save(file, {
-    programId: programId.toBase58()
+    programId: programId.toBase58(),
+    accountId: accountId?.toBase58()
   })
 }

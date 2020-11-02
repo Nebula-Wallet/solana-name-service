@@ -17,6 +17,7 @@
     "clean_simplest": "./src/do.sh simplest-rust clean && rm -rf store/token-name-service.json",
     "deploy": "ts-node src/client/deploy_flow.ts",
     "deploy:pointer": "ts-node src/client/deploy_pointer.ts",
+    "deploy:account": "ts-node src/client/deploy_account_name_service.ts",
     "create_pointer": "ts-node src/client/createPointer.ts",
     "register": "ts-node src/client/createAndRegisterToken.ts",
     "clean_all": "./src/do.sh token-name-service clean && rm -rf store/token-name-service.json",
