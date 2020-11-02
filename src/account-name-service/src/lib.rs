@@ -13,7 +13,7 @@ use solana_sdk::{
 use std::{str::from_utf8, str::FromStr};
 
 static PAYMENT_ACCOUNT_ADDRESS: &'static str = "Gsun7cGFrSUm3N8TEBq7Uu9xz4c9cE4pKdbtETQiSgZX";
-static COUNTER_POINTER_ADDRESS: &'static str = "DChDnvFLXxsX96qVzLsgMn8KfLhN3VLk69CnoHv6nAhe";
+static COUNTER_POINTER_ADDRESS: &'static str = "2Q8AV9MbnKYoVR1ttvmsDUxrNZUKuaDEEr3woFQToTYA";
 static REGISTRATION_FEE: u64 = 1_000_000_000;
 const STORAGE_DATA_SIZE: usize = 73;
 const INSTRUCTION_DATA_SIZE: usize = 64;
@@ -141,6 +141,32 @@ impl Pack for Instruction {
         *name_dst = name;
     }
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+pub struct Counter {
+    pub index: u64,
+}
+impl Sealed for Counter {}
+impl IsInitialized for Counter {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+}
+impl Pack for Counter {
+    const LEN: usize = 8;
+    fn unpack_from_slice(src: &[u8]) -> Result<Self, ProgramError> {
+        let src = array_ref![src, 0, 8];
+        let (_, index) = array_refs![src, 0, 8];
+        let index = u64::from_le_bytes(*index);
+        Ok(Counter { index })
+    }
+    fn pack_into_slice(&self, dst: &mut [u8]) {
+        let dst = array_mut_ref![dst, 0, 8];
+        let (_, index_dst) = mut_array_refs![dst, 0, 8];
+
+        let &Counter { index } = self;
+        *index_dst = index.to_le_bytes();
+    }
+}
 entrypoint!(process_instruction);
 
 // Program entrypoint's implementation
@@ -184,13 +210,13 @@ fn process_instruction(
         return Err(ProgramError::InvalidAccountData);
     }
     let mut counter_data = counter.try_borrow_mut_data()?;
-    let mut counter_value_slice = array_mut_ref![counter_data, 0, 8];
+    let counter_value_slice = array_ref![counter_data, 0, 8];
+    let mut counter = Counter::unpack_from_slice(counter_value_slice)?;
     // Increment counter
-    let counter_value = u64::from_le_bytes(*counter_value_slice) + 1;
-    log::sol_log(&counter_value.to_string());
-    let mut counter_value_bytes = counter_value.to_le_bytes();
-    counter_value_slice = array_mut_ref![counter_value_bytes, 0, 8];
-    println!("Current counter:{:?}", counter_value);
+    counter.index = counter.index + 1;
+    log::sol_log(&counter.index.to_string());
+    Counter::pack_into_slice(&counter, &mut counter_data);
+    println!("Current counter:{:?}", counter.index);
     // Parse instruction
     let instruction_data = Instruction::unpack_from_slice(instruction_data)?;
 
@@ -198,7 +224,7 @@ fn process_instruction(
         is_initialized: true,
         account_address: instruction_data.account_address,
         name: instruction_data.name,
-        index: counter_value,
+        index: counter.index,
     };
     // Save new record
     let storage_account = next_account_info(accounts_iter)?;
@@ -324,5 +350,9 @@ mod test {
         let registered_data = AccountRecord::unpack_from_slice(&data_stored).unwrap();
         assert_eq!(registered_data.name, instruction.name);
         assert_eq!(registered_data.account_address, instruction.account_address);
+        // Check if counter incremented
+        let data_stored_counter = accounts[2].data.borrow();
+        let counter_data = Counter::unpack_from_slice(&data_stored_counter).unwrap();
+        assert_eq!(counter_data.index, 1);
     }
 }

@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "author": "Norbert Bodziony",
-  "repository": {"url": "https://github.com/NorbertBodziony"},
+  "repository": {
+    "url": "https://github.com/NorbertBodziony"
+  },
   "license": "MIT",
   "testnetDefaultChannel": "v1.4.3",
   "scripts": {
@@ -14,13 +16,13 @@
     "build:pointer": "cargo update --manifest-path=src/proxy-pointer/Cargo.toml && ./src/do.sh proxy-pointer build proxy_pointer ../../dist/program/proxy-pointer.so && rm -rf store/proxy-pointer.json",
     "build:account": "cargo update --manifest-path=src/account-name-service/Cargo.toml && ./src/do.sh account-name-service build account_name_service ../../dist/program/account-name-service.so && rm -rf store/account-name-service.json",
     "test_rust": "./src/do.sh simplest-rust test",
-    "clean_simplest": "./src/do.sh simplest-rust clean && rm -rf store/token-name-service.json",
     "deploy": "ts-node src/client/deploy_flow.ts",
     "deploy:pointer": "ts-node src/client/deploy_pointer.ts",
     "deploy:account": "ts-node src/client/deploy_account_name_service.ts",
-    "create_pointer": "ts-node src/client/createPointer.ts",
-    "register": "ts-node src/client/createAndRegisterToken.ts",
-    "clean_all": "./src/do.sh token-name-service clean && rm -rf store/token-name-service.json",
+    "init:pointer": "ts-node src/client/initializePointer.ts",
+    "register:token": "ts-node src/client/createAndRegisterToken.ts",
+    "register:user": "ts-node src/client/createAndRegisterAccount.ts",
+    "clean_all": "rm -rf store",
     "cluster_local": "npm run clean_all && rm -fr .env",
     "cluster_devnet": "npm run clean_all && cp ./env/cluster-devnet.env .env",
     "cluster_testnet": "npm run clean_all && cp ./env/cluster-testnet.env .env",
@@ -32,15 +34,14 @@
     "localnet:update": "solana-localnet update",
     "localnet:up": "set -x; solana-localnet down; set -e; RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=info,solana_bpf_loader=debug,solana_rbpf=debug solana-localnet up",
     "localnet:down": "solana-localnet down",
-    "localnet:logs": "solana-localnet logs -f",
-    "postinstall": "npm run bpf-sdk:update && cargo update --manifest-path=src/token-name-service/Cargo.toml"
+    "localnet:logs": "solana-localnet logs -f"
   },
   "devDependencies": {
     "prettier": "^2.1.1"
   },
   "dependencies": {
     "@solana/spl-token": "^0.0.11",
-    "@solana/web3.js": "^0.84.1",
+    "@solana/web3.js": "^0.86.2",
     "dotenv": "8.2.0",
     "eslint": "6.6.0",
     "eslint-config-standard": "^14.1.1",

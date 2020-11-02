@@ -366,11 +366,11 @@ checksum = "e78d4f1cc4ae33bbfc157ed5d5a5ef3bc29227303d595861deb238fcec4e9457"
 
 [[package]]
 name = "encoding_rs"
-version = "0.8.24"
+version = "0.8.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a51b8cf747471cb9499b6d59e59b0444f4c90eba8968c4e44874e92b5b64ace2"
+checksum = "f62bc5e388624f1a13da83b479275dbec9663a876e414df80decf7d2cdab6670"
 dependencies = [
- "cfg-if 0.1.10",
+ "cfg-if 1.0.0",
 ]
 
 [[package]]
@@ -1201,9 +1201,9 @@ checksum = "41cc0f7e4d5d4544e8861606a285bb08d3e70712ccc7d2b84d7c0ccfaf4b05ce"
 
 [[package]]
 name = "regex"
-version = "1.4.1"
+version = "1.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8963b85b8ce3074fecffde43b4b0dded83ce2f367dc8d363afc56679f3ee820b"
+checksum = "38cf2c13ed4745de91a5eb834e11c00bcc3709e773173b2ce4c56c9fbde04b9c"
 dependencies = [
  "aho-corasick",
  "memchr",
@@ -1213,9 +1213,9 @@ dependencies = [
 
 [[package]]
 name = "regex-syntax"
-version = "0.6.20"
+version = "0.6.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8cab7a364d15cde1e505267766a2d3c4e22a843e1a601f0fa7564c0f82ced11c"
+checksum = "3b181ba2dcf07aaccad5448e8ead58db5b742cf85dfe035e2227f137a539a189"
 
 [[package]]
 name = "remove_dir_all"
@@ -1460,9 +1460,9 @@ dependencies = [
 
 [[package]]
 name = "solana-crate-features"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "beeada39ad2aecfee8795d90ca7150389e7f958236f2630825273b9b900a7f19"
+checksum = "e8e8d7a71e956e93d3d2afa0b0718205c9b51b3526063c9ccc4a7495242cabaf"
 dependencies = [
  "backtrace",
  "bytes 0.4.12",
@@ -1484,9 +1484,9 @@ dependencies = [
 
 [[package]]
 name = "solana-frozen-abi"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "63bbbf3bf442bc7e4e76b57af858030fdcb8953cdbcbc6bf3ddd4819aa38e982"
+checksum = "96b1c4f649f305d1cb1454bd5de691872bc2631b99746341b5af8b4d561dbf06"
 dependencies = [
  "bs58",
  "bv",
@@ -1504,9 +1504,9 @@ dependencies = [
 
 [[package]]
 name = "solana-frozen-abi-macro"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bdb4a177d5f46025b619c83d0562e6ea302a871f98148bd7edbc82416ac76949"
+checksum = "3c84e6316d0b71d60ff34d2cc1a25521f6cb605111590a61e9baa768ac1234d4"
 dependencies = [
  "lazy_static",
  "proc-macro2 1.0.24",
@@ -1517,9 +1517,9 @@ dependencies = [
 
 [[package]]
 name = "solana-logger"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8f251c26d46a55bf5c3f6ef5e999e8949909eab952e19a9261e6434ebd31041"
+checksum = "d2e6d1862202b2f6aba9bd346ef10cdecb29e05948d25ad3a3789f4239000012"
 dependencies = [
  "env_logger",
  "lazy_static",
@@ -1528,9 +1528,9 @@ dependencies = [
 
 [[package]]
 name = "solana-program"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9d4621f2d8ca6d7ac09c0138a02d21def0a736b70feab1f2516f5a74f1ee642f"
+checksum = "c8cf8a198b1443fccc12fab0e4927d1a3add3e5e9bd249bb61191c04d47e3c09"
 dependencies = [
  "bincode",
  "bs58",
@@ -1558,9 +1558,9 @@ dependencies = [
 
 [[package]]
 name = "solana-sdk"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "096751fdd2ec2dc3ed7146b1b14245a5b562a21b5046bf3677810a96037aff96"
+checksum = "f1b98b011b46e087d42639aead6b8f27fdcc14c6375681631457b1e66cde12a6"
 dependencies = [
  "assert_matches",
  "bincode",
@@ -1574,6 +1574,7 @@ dependencies = [
  "hex",
  "hmac",
  "itertools",
+ "lazy_static",
  "libsecp256k1",
  "log",
  "memmap",
@@ -1601,9 +1602,9 @@ dependencies = [
 
 [[package]]
 name = "solana-sdk-macro"
-version = "1.4.3"
+version = "1.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a02d89c5d8c3c098552e39ad716f8e25b1b9ce95905ad0c770c78d36e1ebcc39"
+checksum = "f8da0dcb182f9631a69b4d6de69f82f0aa8bf2350c666122b9fad99380547ccc"
 dependencies = [
  "bs58",
  "proc-macro2 1.0.24",

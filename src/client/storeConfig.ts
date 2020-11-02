@@ -1,8 +1,12 @@
 import { PublicKey } from '@solana/web3.js'
 
 import { Store } from './util/store'
-
-export async function getStore(connection, file) {
+interface IStore {
+  inStore: boolean
+  programId?: PublicKey
+  accountId?: PublicKey
+}
+export async function getStore(connection, file): Promise<IStore> {
   const store = new Store()
 
   let config
@@ -50,6 +54,7 @@ export async function getStore(connection, file) {
 }
 
 export async function setStore(file, programId: PublicKey, accountId?: PublicKey) {
+  console.log(file)
   const store = new Store()
   await store.save(file, {
     programId: programId.toBase58(),
