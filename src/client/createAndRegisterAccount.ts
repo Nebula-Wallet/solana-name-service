@@ -65,7 +65,7 @@ const main = async () => {
   )
 
   const name = Buffer.alloc(32)
-  name.write('test name user')
+  name.write('Bruh')
   const instruction_data = Buffer.concat([newAccount.publicKey.toBuffer(), name]) // 64 bytes
   console.log(instruction_data.length)
   const instruction = new TransactionInstruction({

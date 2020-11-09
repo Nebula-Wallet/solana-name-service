@@ -13,7 +13,7 @@ use solana_sdk::{
 use std::{str::from_utf8, str::FromStr};
 
 static PAYMENT_ACCOUNT_ADDRESS: &'static str = "Gsun7cGFrSUm3N8TEBq7Uu9xz4c9cE4pKdbtETQiSgZX";
-static COUNTER_POINTER_ADDRESS: &'static str = "2Q8AV9MbnKYoVR1ttvmsDUxrNZUKuaDEEr3woFQToTYA";
+static COUNTER_POINTER_ADDRESS: &'static str = "H4EsZEY38B5sRwDKuHoXehwPMYZ2EVHMs6M6tixTyEd6";
 static REGISTRATION_FEE: u64 = 1_000_000_000;
 const STORAGE_DATA_SIZE: usize = 73;
 const INSTRUCTION_DATA_SIZE: usize = 64;
